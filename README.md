@@ -40,7 +40,7 @@ _ow2zw_ is distributed via the _Z.Wave.Me_ app store, in the category _Periphera
 To configure a 1-Wire device, add an instance of this app (pressing the `+` - sign) & start to provide the following information.
 
 ### 1-Wire _owserver_ Connection Settings
-<p  align="center"><img src='htdocs/owserver.png' width='80%'></p>
+<p  align="center"><img src='htdocs/owserver.png' width='60%'></p>
 
 |Property|Value|
 |:---|:---|
