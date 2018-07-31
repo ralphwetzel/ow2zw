@@ -36,13 +36,11 @@ If this test indicates that `localhost` defaults to an IPv6 address, you may eit
 _ow2zw_ is distributed via the _Z.Wave.Me_ app store, in the category _Peripherals_. After installation, you'll find it in the apps directory of your _Z-Wave.Me_ application.
 <p  align="center"><img src='htdocs/1wire.png' width='200px'></p>
 
-![1wire](htdocs/1wire.png)
-
 ## Configuration of a 1-Wire device
 To configure a 1-Wire device, add an instance of this app (pressing the `+` - sign) & start to provide the following information.
 
 ### 1-Wire _owserver_ Connection Settings
-![owserver](htdocs/owserver.png)
+<p  align="center"><img src='htdocs/owserver.png' width='80%'></p>
 
 |Property|Value|
 |:---|:---|
