@@ -1,0 +1,27 @@
+{
+	"m_title":"1-Wire",
+	"m_descr":"This module allows to integrate 1-Wire sensors into Z-Wave.Me.<br> Please refer to the <a href='https://github.com/ralphwetzel/ow2zw'>GitHub repository</a> for documentation.",
+	"monday":"Monday",
+	"tuesday":"Tuesday",
+	"wednesday":"Wednesday",
+	"thursday":"Thursday",
+	"friday":"Friday",
+	"saturday":"Saturday",
+	"sunday":"Sunday",
+	"timeFormat":"hh:mm",
+	"l_switches":"List of switches:",
+	"on":"On",
+	"off":"Off",
+	"l_dimmers":"List of dimmers:",
+	"l_level":"Level",
+	"l_scenes":"List of scenes to activate:",
+	"l_thermostats":"List of thermostats",
+	"l_temperature":"Temperature",
+	"l_locks":"List of locks:",
+	"close":"Close",
+	"open":"Open",
+	"l_sendAction":"Don't send On command, if device is already turned On, similarly for Off",
+	"h_sendAction":"Need to avoid flooding the network.",
+
+	"l_options":"Select device type"
+}

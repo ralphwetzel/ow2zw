@@ -1,0 +1,286 @@
+{
+	"singleton": false,
+	"category": "peripherals",
+	"author": "Ralph Wetzel",
+	"homepage": "https://github.com/ralphwetzel/ow2zw",
+	"icon": "icon.png",
+	"moduleName":"ow2zw",
+	"version": "1.0.0",
+	"maturity": "stable",
+	"repository": {
+			"type": "git",
+			"source": "https://github.com/ralphwetzel/ow2zw"
+	},
+	"schema" : {
+		"type": "object",
+		"properties" : {
+			"ows": {
+				"type": "object",
+				"title": "1-Wire <i>owserver</i> Connection Settings",
+				"properties": {
+					"ip": {
+						"title": "IP Address",
+						"format": "ip-address",
+						"required": true
+					},
+					"port": {
+						"title": "Port",
+						"required": true,
+						"type": "integer",
+						"minimum": 0,
+						"maximum": 65535
+					}
+				}
+			},
+			"sensor": {
+				"type": "object",
+				"title": "1-Wire Sensor Definition",
+				"properties": {
+					"typ": {
+						"title": "Type",
+						"enum": ["DS18B20", "DS2423", "gmls"],
+						"required": true
+					},
+					"id": {
+						"title": "ID or Alias",
+						"required": true,
+						"type": "string"
+					},
+					"path": {
+						"title": "Data Path",
+						"required" : true,
+						"type" : "string"
+					}
+				}
+			},
+			"display": {
+				"type": "object",
+				"title": "Sensor Data Display",
+				"properties": {
+					"typ": {
+						"title": "Sensor Type",
+						"enum": [
+							"temperature",
+							"luminosity",
+							"energy",
+							"humidity",
+							"ultraviolet",
+							"barometer",
+							"meterElectric_kilowatt_per_hour",
+							"meterElectric_watt",
+							"meterElectric_pulse_count",
+							"meterElectric_voltage",
+							"meterElectric_ampere",
+							"meterElectric_power_factor"
+						]
+					},
+					"icon": {
+						"title": "Icon",
+						"enum": [
+							"temperature",
+							"luminosity",
+							"energy",
+							"humidity",
+							"ultraviolet",
+							"barometer",
+							"meter"
+						]
+					},
+					"unit": {
+						"title": "Unit",
+						"enum": ["temp", "pres", "cstm"]
+					},
+					"unit_custom": {
+						"title": "Customized unit label",
+						"type": "string"
+					}
+				},
+				"dependencies": {
+					"unit_custom": ["unit"]
+				}
+			},
+			"data": {
+				"type": "object",
+				"title": "Sensor Data Interpretation",
+				"properties": {
+					"typ": {
+						"title": "Data Type",
+						"enum": ["abs", "diff"],
+						"required": true
+					},
+					"scale": {
+						"title": "Scale Factor",
+						"type": "number"
+					},
+					"base": {
+						"title": "Differential Data: <i>Scale Factor</i> reference",
+						"enum": ["s", "m", "h"]
+					}
+				},
+				"dependencies": {
+					"base": ["typ"]
+				}
+			},
+			"advanced": {
+				"type": "object",
+				"title": "Advanced Configuration",
+				"properties": {
+					"rate": {
+						"title": "Polling Rate",
+						"type": "integer"
+					},
+					"hyst": {
+						"title": "Hysteresis",
+						"type": "number"
+					},
+					"alarm": {
+						"title": "Create <i>Alarm</i> device",
+						"type": "boolean"
+					}
+				}
+			}
+		}
+	},
+	"defaults": {
+		"title": "__m_title__",
+		"description": "__m_descr__",
+		"ows": {
+			"ip": "127.0.0.1",
+			"port": 4304
+		},
+		"sensor": {
+			"typ": "gmls",
+			"path": "temperature"
+		},
+		"display": {
+			"unit": "temp"
+		},
+		"data": {
+			"typ": "abs",
+			"scale": 1.0
+		},
+		"advanced":
+		{
+			"rate": 60,
+			"hyst": 0.1,
+			"alarm": false
+		}
+	},
+	"options" : {
+
+		"fields": {
+			"ows": {
+				"fields": {
+					"ip": {
+						"type": "ipv4",
+						"helper": "Don't use 'localhost', but '127.0.0.1'. Only IPv4 supported!"
+					},
+					"port": {
+						"type": "integer",
+						"helper": "Standard port of <i>owserver</i> is 4304."
+					}
+				}
+			},
+			"sensor": {
+				"fields": {
+					"typ": {
+						"type": "select",
+						"emptySelectFirst": true,
+						"optionLabels": ["Temperature: DS18B20", "Counter: DS2423", "Generic Multilevel Sensor"],
+						"helper": "Selecting a dedicated sensor type will set some reasonable default values for subsequent properties."
+					},
+					"path": {
+						"type": "text",
+						"helper": "Path within the 1-Wire filesystem to the sensor's data value."
+					}
+				}
+			},
+			"display": {
+				"fields": {
+					"typ": {
+						"type": "select",
+						"optionLabels": [
+							"Temperature",
+							"Luminosity",
+							"Energy",
+							"Humidity",
+							"Ultraviolet",
+							"Barometer",
+							"Meter: kWh",
+							"Meter: W",
+							"Meter: Counter",
+							"Meter: Voltage",
+							"Meter: Ampere",
+							"Meter: Power Factor"
+						],
+						"helper": "This defines the ZWave.me Device class."
+					},
+					"icon": {
+						"type": "select",
+						"optionLabels": [
+							"Temperature",
+							"Luminosity",
+							"Energy",
+							"Humidity",
+							"Ultraviolet",
+							"Barometer",
+							"Meter"
+						],
+						"helper": "This defines the icon to be used for this sensor."
+					},
+					"unit": {
+						"type": "select",
+						"optionLabels": ["Temperature", "Pressure", "Customized"],
+						"helper": "Unit definition for <i>Temperature</i> (e.g. if to display measured value in <i>°C</i> or <i>°K</i> ) and <i>Pressure</i> are derived from the 1-wire subsystem."
+					},
+					"unit_custom": {
+						"dependencies": {
+							"unit": "cstm"
+						}
+					}
+				}
+			},
+
+			"data": {
+				"fields": {
+					"typ": {
+						"type": "select",
+						"emptySelectFirst": true,
+						"optionLabels": ["Absolute", "Differential"]
+					},
+					"base": {
+						"type": "select",
+						"optionLabels": [
+							"per Second",
+							"per Minute",
+							"per Hour"
+						],
+						"sort": false,
+						"helper": "The <i>Scale Factor</i> (as defined above) will be applied per given period of time.",
+						"dependencies": {
+							"typ": "diff"
+						}
+					}
+				}
+			},
+
+			"advanced": {
+				"fields": {
+					"rate": {
+						"type": "integer",
+						"helper": "Interval in seconds between two consecutive interrogations of sensor data."
+					},
+					"hyst": {
+						"type": "number",
+						"helper": "Minimum difference of sensor data read demanded prior forwarding new value to UI."
+					},
+					"alarm": {
+						"type": "checkbox",
+						"helper": "This additional device indicates the <i>alarm</i> status of the 1-Wire sensor - if supported."
+					}
+				}
+			}
+		}
+	},
+	"postRender": "loadFunction:postRender.js"
+}

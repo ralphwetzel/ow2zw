@@ -5,6 +5,7 @@ This App contributes to the *Z-Wave.Me* suite. It is intended to allow the integ
 [TOC]: #
 
 # Table of Contents
+- [Prerequisite: z-way-server 2.3.8 or 3.0](#prerequisite-z-way-server-238-or-30)
 - [Prerequisite: _owserver_](#prerequisite-owserver)
 - [Caution: Verify that `localhost` is IPv4](#caution-verify-that-localhost-is-ipv4)
 - [Installation](#installation)
@@ -17,6 +18,8 @@ This App contributes to the *Z-Wave.Me* suite. It is intended to allow the integ
 - [Example of a configuration](#example-of-a-configuration)
 - [What's next](#whats-next)
 
+## Prerequisite: z-way-server 2.3.8 or 3.0
+Due to a [bug](https://github.com/Z-Wave-Me/home-automation/issues/473) in the current release of Z-Wave.Me v2.3.7 you need to operate (for the time being) with one of the [latest available release candidates](https://storage.z-wave.me/z-way-server/) (e.g. v2.3.8-rc5) to use this app.
 
 ## Prerequisite: _owserver_
 
