@@ -142,7 +142,7 @@ When you read the raw sensor data from the 1-Wire File System, you'll (only) get
 - _Data Type_ shall be set to **_Differential_**.
 - _Scale Factor_ is **0.5**.
 - _Scale Factor Reference_ is **_per Hour_**.
-- _Unit_ then is **Custimozed**, **W**.
+- _Unit_ then is **Customized**, **W**.
 - Dependend on your consumation, you should alter _Polling Rate_ to a reasonable value, e.g. **600** seconds equals 10 minutes.
 
 ## What's next
